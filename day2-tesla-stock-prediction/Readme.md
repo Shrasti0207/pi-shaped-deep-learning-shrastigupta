@@ -1,4 +1,4 @@
-# Day 2 - Predicting Tesla Stock Prices with RNNs - Aman
+# Day 2 - Predicting Tesla Stock Prices with RNNs - Shrasti Gupta
 
 This project is my hands-on exercise to dive into the world of Recurrent Neural Networks (RNNs). My goal was to build and train an LSTM model to see if I could predict the next-day opening price of Tesla's stock (TSLA) using historical data from Kaggle.
 
