@@ -1,4 +1,4 @@
-# Day 3 - Fashion-MNIST Image Classification using a CNN ( Aman )
+# Day 3 - Fashion-MNIST Image Classification using a CNN - Shrasti Gupta
 
 This project is a hands-on exercise to build, train, and evaluate a Convolutional Neural Network (CNN). The goal is to create a model that can accurately classify images from the Fashion-MNIST dataset into one of 10 different fashion categories.
 
@@ -30,11 +30,10 @@ pip install tensorflow numpy matplotlib seaborn scikit-learn
 
 1.  **Clone the Repository:**
     ```bash
-    git clone https://github.com/Amaninreal/pi-shaped-deep-learning-Aman.git
+    git clone https://github.com/Shrasti0207/pi-shaped-deep-learning-shrastigupta.git
+    cd pi-shaped-deep-learning-Shrasti
     ```
-    ```bash
-    cd pi-shaped-deep-learning-Aman
-    ```
+    
 3.  **Run the Jupyter Notebook:**
     Open the `day3_fashion_mnist.ipynb` file in Jupyter Lab or Jupyter Notebook and run the cells from top to bottom.
 
@@ -58,62 +57,56 @@ Here are my explanations for the fundamental concepts behind this project.
 
 ### 1. What advantages do CNNs have over traditional fully connected neural networks for image data?
 
-In my words, a traditional network treats an image as just a long list of pixels, losing the spatial context of where those pixels are. It doesn't know that one pixel is *next to* another. A CNN is much smarter; it uses sliding filters to look at small local regions of an image. This allows it to learn specific patterns (like an edge, a curve, or a texture) and recognize that pattern no matter where it appears in the image. This makes it far more efficient and effective for image tasks.
-
-> **Case Study: Facial Recognition System**
-> A traditional network would have to learn the pattern of an "eye" in the top-left, top-right, and center of an image as three completely separate things. A CNN learns a single "eye detector" filter and can find an eye *wherever* it is, making it vastly more robust.
+CNNs are designed to work with image data by preserving spatial relationships between pixels.
+They use fewer parameters than fully connected networks, making them efficient.
+By using filters, they can detect edges, shapes, and complex patterns.
+This makes CNNs more accurate and scalable for vision tasks.
 
 ### 2. What is the role of convolutional filters/kernels in a CNN?
 
-I think of filters as specialized "pattern detectors." Each filter is a tiny grid of numbers trained to find one specific feature. Early filters might learn to detect simple things like vertical lines or green patches. Deeper in the network, filters learn to combine these simple patterns to detect more complex things, like a "car wheel" or an "eyebrow."
-
-> **Case Study: Medical Imaging for Tumor Detection**
-> In a CNN analyzing MRI scans, an early-layer filter might become an expert at detecting subtle changes in tissue texture. A deeper-layer filter could then learn to combine these texture maps with shape information to identify the specific pattern of a malignant tumor, distinguishing it from healthy tissue.
+Filters (kernels) are small matrices that slide over the image.
+They perform convolution to detect features like edges, textures, or corners.
+Each filter learns a different type of pattern during training.
+The result is feature maps that highlight important visual information.
 
 ### 3. Why do we use pooling layers, and what is the difference between MaxPooling and AveragePooling?
 
-Pooling layers are used to shrink the image data down as it passes through the network. This does two great things: it makes the network faster (fewer calculations) and helps prevent overfitting by summarizing features in a local region, making the model less sensitive to the exact location of a feature.
-
--   **MaxPooling** is like the "highlight reel." It looks at a small area and keeps only the single most important (highest value) pixel, preserving the sharpest features.
--   **AveragePooling** is the "general impression." It takes the average value of all pixels in the area, creating a smoother summary.
-
-> **Case Study: Animal Classifier**
-> When identifying a zebra, **MaxPooling** would be excellent at preserving the sharpest, most distinct edge of a black stripe against a white stripe—a key feature. **AveragePooling** might blur this edge slightly but could be useful for summarizing the overall texture of the animal's fur.
+Pooling reduces the size of feature maps while keeping essential information.
+It makes the network faster and less prone to overfitting.
+MaxPooling selects the strongest feature (maximum value) in each region.
+AveragePooling takes the average value, giving smoother results.
 
 ### 4. Why is normalization of image pixels important before training?
 
-Normalization is about making sure the network can learn effectively. Pixel values range from 0 to 255. Feeding such large numbers into a network can make the training process unstable and slow. By scaling everything to a small, consistent range like 0 to 1, we ensure that the learning process is smooth and fast.
-
-> **Case Study: Art Style Classifier**
-> If a model is classifying paintings, a very bright painting (high pixel values) could unfairly dominate the learning process compared to a dark one (low values). By normalizing both, the network can focus on the *patterns* of the brush strokes, not just the overall brightness.
+Images have pixel values from 0–255, which are too large for neural nets.
+Normalizing to a smaller range (like 0–1) ensures stable learning.
+It prevents large weight updates that could destabilize training.
+Also, it helps the model converge faster to good solutions.
 
 ### 5. How does the softmax activation function work in multi-class classification?
 
-Softmax is the final decision-maker. After the network has processed an image, the last layer produces a set of raw scores for each class. Softmax takes this messy list of scores and converts it into a clean list of probabilities that all add up to 100%. The class with the highest probability is the model's final prediction.
-
-> **Case Study: Document Scanner App**
-> An app classifies a document as "Invoice," "Contract," or "Letter." The network outputs raw scores: `{Invoice: 18.2, Contract: 15.1, Letter: 4.5}`. Softmax converts these into probabilities: `{Invoice: 94.6%, Contract: 5.3%, Letter: 0.1%}`. Now the app can confidently tag the document as an "Invoice."
+Softmax converts raw model outputs (logits) into probabilities.
+Each probability lies between 0 and 1, and they sum to 1.
+This makes it easy to interpret the model’s confidence in each class.
+The class with the highest probability is chosen as the prediction.
 
 ### 6. What strategies can help prevent overfitting in CNNs? (e.g., dropout, data augmentation)
 
-Overfitting is when a model just memorizes the training data and can't handle new, unseen data. Two great strategies to prevent this are:
-
--   **Dropout**: During training, you randomly "turn off" some neurons. This forces the other neurons to learn more robustly instead of relying on a few over-specialized ones.
--   **Data Augmentation**: You create more training data by taking your existing images and slightly changing them—rotating, zooming, or flipping them.
-
-> **Case Study: Self-Driving Car's Stop Sign Detector**
-> An overfit model might only recognize a perfectly lit stop sign. By using **data augmentation** (showing it rotated, faded, or partially obscured signs) and **dropout** (ensuring the whole network contributes to the decision), the model becomes far more reliable in the real world.
+Overfitting happens when a model memorizes training data but fails on new data.
+Dropout randomly turns off neurons to improve generalization.
+Data augmentation creates variations of images (rotations, flips, etc.).
+Other techniques include early stopping and L2 regularization.
 
 ### 7. What does the confusion matrix tell you about model performance?
 
-A confusion matrix is a detailed report card. An accuracy score of 90% tells you what you got right, but the confusion matrix tells you *what you got wrong*. It shows exactly which classes the model is getting confused about (e.g., frequently mistaking "Shirts" for "T-shirts"). This is essential for understanding the model's specific weaknesses.
-
-> **Case Study: Email Spam Filter**
-> A confusion matrix can tell a developer that their filter is great at catching obvious spam, but it frequently mislabels promotional newsletters (False Positives) or misses sophisticated phishing emails (False Negatives). This allows them to focus their efforts on fixing those specific problems.
+It’s a table that compares predicted classes against true classes.
+Diagonal entries show correct predictions, while off-diagonal shows mistakes.
+It highlights which classes the model confuses with others.
+This helps in diagnosing weaknesses and guiding improvements.
 
 ### 8. If you wanted to improve the CNN, what architectural or data changes would you try?
 
-To improve my model, I would focus on two areas:
-
-1.  **Architectural Changes**: I would make the network "deeper" by adding another `Conv2D` and `MaxPooling2D` layer. This would allow it to learn more intricate details. I would also add `Dropout` layers to prevent overfitting as the model gets more complex.
-2.  **Data Changes**: The best way to improve a model is often with more data. Since I can't get more images, I would use **data augmentation** heavily to create a larger, more diverse training set by rotating, shifting, and zooming the existing images.
+We can add more convolutional and pooling layers to learn richer features.
+Using different kernel sizes can capture small and large patterns.
+Batch normalization can stabilize and speed up training.
+Adding more training data or using transfer learning also improves accuracy.
