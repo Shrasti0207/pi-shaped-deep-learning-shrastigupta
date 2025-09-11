@@ -14,7 +14,7 @@ This project is a hands-on exercise to build, train, and evaluate a Convolutiona
 
 ### Screenshot of My Prediction Plot
 
-![Model Confusion Matrix](Screenshots/image.png)
+![Model Confusion Matrix](Screenshots/GraphImage.png)
 
 ## How to Run This Project
 
@@ -43,8 +43,8 @@ pip install tensorflow numpy matplotlib seaborn scikit-learn
 
 The final model achieved a test accuracy of approximately **90-91%**.
 
-The confusion matrix revealed that the model is very confident in classifying distinct items like **Trousers**, **Bags**, and **Ankle boots**. The primary sources of confusion occurred between visually similar items, such as:
-- **Shirt** vs. **T-shirt/top**
+The confusion matrix revealed that the model is very confident in classifying distinct items like **Top**, **Bags**, and **Slippers**. The primary sources of confusion occurred between visually similar items, such as:
+- **Shirt** vs. **T-shirt**
 - **Pullover** vs. **Coat**
 
 This is an expected challenge, as these items share many visual features.
